@@ -5,7 +5,21 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  important: true,
   theme: {
+    colors: {
+      primary: "#f3c614",
+      secondary: "#1b262c",
+      white: "#ffffff",
+      text: {
+        DEFAULT: "#0f4c75",
+        light: "#3282b8",
+      },
+      light: {
+        DEFAULT: "#bbe1fa",
+        lighter: "#eff6ff",
+      },
+    },
     extend: {},
   },
   plugins: [],
