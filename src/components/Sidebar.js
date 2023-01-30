@@ -2,13 +2,20 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useMemo } from "react";
-import { Search } from "react-feather";
+import {
+  Home,
+  Search,
+  User,
+  ArrowRight,
+  ArrowLeft,
+  ChevronLeft,
+} from "react-feather";
 
 const menuItems = [
-  { id: 1, label: "Home", icon: Search, link: "/" },
-  { id: 2, label: "Manage Posts", icon: Search, link: "/posts" },
-  { id: 3, label: "Manage Users", icon: Search, link: "/users" },
-  { id: 4, label: "Manage Tutorials", icon: Search, link: "/tutorials" },
+  { id: 1, label: "Home", icon: Home, link: "/" },
+  { id: 2, label: "Tasks", icon: Search, link: "/tasks" },
+  { id: 3, label: "Users", icon: User, link: "/users" },
+  { id: 4, label: "", icon: Search, link: "/tutorials" },
 ];
 
 const Sidebar = () => {
@@ -31,7 +38,7 @@ const Sidebar = () => {
   );
 
   const collapseIconClasses = classNames(
-    "p-4 rounded bg-light-lighter absolute right-0",
+    "p-4 rounded-full bg-light-lighter absolute right-0",
     {
       "rotate-180": toggleCollapse,
     }
@@ -64,7 +71,7 @@ const Sidebar = () => {
       <div className="flex flex-col">
         <div className="flex items-center justify-between relative">
           <div className="flex items-center pl-1 gap-4">
-            <Search />
+            <ArrowRight />
             <span
               className={classNames("mt-2 text-lg font-medium text-text", {
                 hidden: toggleCollapse,
@@ -78,16 +85,16 @@ const Sidebar = () => {
               className={collapseIconClasses}
               onClick={handleSidebarToggle}
             >
-              <Search />
+              <ChevronLeft />
             </button>
           )}
         </div>
 
         <div className="flex flex-col items-start mt-24">
-          {menuItems.map(({ icon: Icon, ...menu }) => {
+          {menuItems.map(({ icon: Icon, ...menu }, i) => {
             const classes = getNavItemClasses(menu);
             return (
-              <div className={classes}>
+              <div key={i} className={classes}>
                 <Link legacyBehavior href={menu.link}>
                   <a className="flex py-4 px-3 items-center w-full h-full">
                     <div style={{ width: "2.5rem" }}>
@@ -112,7 +119,7 @@ const Sidebar = () => {
 
       <div className={`${getNavItemClasses({})} px-3 py-4`}>
         <div style={{ width: "2.5rem" }}>
-          <Search />
+          <ArrowRight />
         </div>
         {!toggleCollapse && (
           <span className={classNames("text-md font-medium text-text-light")}>
